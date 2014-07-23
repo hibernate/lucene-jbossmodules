@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.hibernate</groupId>
+    <artifactId>lucene-modules-parent</artifactId>
+    <name>Lucene JBoss Modules parent</name>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <version.lucene>4.9.0</version.lucene>
+        <version.wildfly>8.1.0.Final</version.wildfly>
+    </properties>
+
+    <scm>
+        <connection>scm:git:git://github.com/hibernate/lucene-modules.git</connection>
+        <developerConnection>scm:git:git@github.com:hibernate/lucene-modules.git</developerConnection>
+        <url>http://github.com/hibernate/lucene-modules</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <organization>
+        <name>Hibernate</name>
+        <url>http://www.hibernate.org</url>
+    </organization>
+
+    <distributionManagement>
+        <repository>
+            <id>jboss-releases-repository</id>
+            <name>JBoss Release Repository</name>
+            <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+            <id>jboss-snapshots-repository</id>
+            <name>JBoss Snapshot Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>lucene-modules</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <modules>
+        <module>lucene-modules</module>
+        <module>integration-tests</module>
+    </modules>
+
+
+</project>
