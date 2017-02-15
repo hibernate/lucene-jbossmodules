@@ -12,6 +12,11 @@
     <properties>
         <version.lucene>5.5.2</version.lucene>
         <version.wildfly>10.1.0.Final</version.wildfly>
+        <!-- Integration tests -->
+        <arquillianVersion>1.1.11.Final</arquillianVersion>
+        <arquillianContainerVersion>2.0.0.Final</arquillianContainerVersion>
+        <shrinkwrapResolverVersion>2.2.2</shrinkwrapResolverVersion>
+        <version.junit>4.11</version.junit>
     </properties>
 
     <scm>
