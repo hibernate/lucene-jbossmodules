@@ -10,8 +10,8 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
-        <version.lucene>4.9.0</version.lucene>
-        <version.wildfly>8.1.0.Final</version.wildfly>
+        <version.lucene>5.5.2</version.lucene>
+        <version.wildfly>10.1.0.Final</version.wildfly>
     </properties>
 
     <scm>
@@ -55,8 +55,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
