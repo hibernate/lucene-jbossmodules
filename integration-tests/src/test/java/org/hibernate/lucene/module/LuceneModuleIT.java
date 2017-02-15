@@ -5,6 +5,7 @@ import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
+import org.apache.lucene.document.SortedDocValuesField;
 import org.apache.lucene.facet.*;
 import org.apache.lucene.facet.taxonomy.FastTaxonomyFacetCounts;
 import org.apache.lucene.facet.taxonomy.directory.DirectoryTaxonomyReader;
@@ -19,6 +20,7 @@ import org.apache.lucene.search.grouping.GroupingSearch;
 import org.apache.lucene.search.grouping.TopGroups;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -57,8 +59,8 @@ public class LuceneModuleIT {
 
     @Before
     public void setup() throws IOException {
-        directory = FSDirectory.open(tmpFolder.newFolder());
-        taxonomyDirectory = FSDirectory.open(tmpFolder.newFolder());
+        directory = FSDirectory.open(tmpFolder.newFolder().toPath());
+        taxonomyDirectory = FSDirectory.open(tmpFolder.newFolder().toPath());
     }
 
     @Deployment
@@ -93,9 +95,9 @@ public class LuceneModuleIT {
 
     @Test
     public void testGrouping() throws IOException {
-        Document doc1 = buildLuceneDoc("field1", "value1");
-        Document doc2 = buildLuceneDoc("field1", "value1");
-        Document doc3 = buildLuceneDoc("field1", "value2");
+        Document doc1 = buildLuceneDoc("field1", "value1", true);
+        Document doc2 = buildLuceneDoc("field1", "value1", true);
+        Document doc3 = buildLuceneDoc("field1", "value2", true);
         index(doc1, doc2, doc3);
         GroupingSearch groupingSearch = new GroupingSearch("field1");
         TopGroups<Object> topGroups = groupingSearch.search(openSearcher(), new MatchAllDocsQuery(), 0, 10);
@@ -127,7 +129,7 @@ public class LuceneModuleIT {
     }
 
     private Query buildQuery(String q) throws ParseException {
-        QueryParser queryParser = new QueryParser(luceneVersion.getCompatVersion(), "field1", new WhitespaceAnalyzer(luceneVersion.getCompatVersion()));
+        QueryParser queryParser = new QueryParser("field1", new WhitespaceAnalyzer());
         return queryParser.parse(q);
     }
 
@@ -137,27 +139,33 @@ public class LuceneModuleIT {
 
     private Terms terms(String field) throws IOException {
         DirectoryReader reader = DirectoryReader.open(directory);
-        AtomicReaderContext readerContext = reader.getContext().leaves().iterator().next();
+        LeafReaderContext readerContext = reader.getContext().leaves().iterator().next();
         return readerContext.reader().terms(field);
     }
 
     private void index(Document... documents) throws IOException {
-        IndexWriterConfig iwc = new IndexWriterConfig(luceneVersion.getCompatVersion(), new WhitespaceAnalyzer(luceneVersion.getCompatVersion()));
+        IndexWriterConfig iwc = new IndexWriterConfig(new WhitespaceAnalyzer());
         IndexWriter indexWriter = new IndexWriter(directory, iwc);
         for (Document doc : documents) {
             indexWriter.addDocument(doc);
         }
         indexWriter.close();
     }
+    
+    private static Document buildLuceneDoc(String fieldName, String contents) {
+    	return buildLuceneDoc(fieldName, contents, false);
+    }
 
-    private Document buildLuceneDoc(String fieldName, String contents) {
+    private static Document buildLuceneDoc(String fieldName, String contents, boolean withDocValue) {
         Document document = new Document();
         FieldType fieldType = new FieldType();
-        fieldType.setIndexed(true);
+        fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
+        if (withDocValue) {
+			document.add(new SortedDocValuesField(fieldName, new BytesRef(contents)));
+        }
         document.add(new Field(fieldName, contents, fieldType));
         return document;
     }
-
 
     private static String dep(String name, String version) {
         return name + ":" + version + " services";
