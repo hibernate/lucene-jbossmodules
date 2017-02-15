@@ -90,8 +90,8 @@
             <version>16.0.1</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
+
     <build>
         <testResources>
             <testResource>
@@ -153,6 +153,30 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <!-- Copy the WildFly configuration files so we can use our custom configurations -->
+                    <execution>
+                        <id>configure-as-node-node1</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/wildfly-${version.wildfly}</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/wildflyConfig</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+
 </project>
