@@ -11,8 +11,10 @@
 
     <properties>
         <version.lucene>5.5.2</version.lucene>
+        <!-- This should match the major.minor of the Lucene version, optionally revisioned with module micro fixes -->
+        <slot.simple.id>5.5</slot.simple.id>
         <version.wildfly>10.1.0.Final</version.wildfly>
-        <!-- Integration tests -->
+        <!-- Integration test dependencies; typically need to match WildFly version -->
         <arquillianVersion>1.1.11.Final</arquillianVersion>
         <arquillianContainerVersion>2.0.0.Final</arquillianContainerVersion>
         <shrinkwrapResolverVersion>2.2.2</shrinkwrapResolverVersion>

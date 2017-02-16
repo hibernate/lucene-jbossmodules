@@ -11,12 +11,17 @@
     <files>
         <file>
             <source>${module.xml.basedir}/lucene/module.xml</source>
-            <outputDirectory>/org/apache/lucene/${lucene.module.slot}</outputDirectory>
+            <outputDirectory>/org/apache/lucene/${version.lucene}</outputDirectory>
             <filtered>true</filtered>
         </file>
         <file>
             <source>${module.xml.basedir}/lucene_internal/module.xml</source>
-            <outputDirectory>/org/apache/lucene/internal/${lucene.module.slot}</outputDirectory>
+            <outputDirectory>/org/apache/lucene/internal/${version.lucene}</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>${module.xml.basedir}/main_alias/module.xml</source>
+            <outputDirectory>/org/apache/lucene/${slot.simple.id}</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
@@ -24,7 +29,7 @@
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>org/apache/lucene/${lucene.module.slot}</outputDirectory>
+            <outputDirectory>org/apache/lucene/${version.lucene}</outputDirectory>
             <useTransitiveFiltering>false</useTransitiveFiltering>
             <unpack>false</unpack>
             <includes>
@@ -39,7 +44,7 @@
 
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>org/apache/lucene/internal/${lucene.module.slot}</outputDirectory>
+            <outputDirectory>org/apache/lucene/internal/${version.lucene}</outputDirectory>
             <useTransitiveFiltering>false</useTransitiveFiltering>
             <unpack>false</unpack>
             <includes>

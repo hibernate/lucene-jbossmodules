@@ -18,7 +18,6 @@
 
     <properties>
         <module.xml.basedir>src/main/modules</module.xml.basedir>
-        <lucene.module.slot>${version.lucene}</lucene.module.slot>
     </properties>
 
     <dependencies>
