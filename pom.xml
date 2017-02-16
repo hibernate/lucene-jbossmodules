@@ -3,7 +3,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.hibernate</groupId>
+    <groupId>org.hibernate.lucene-modules</groupId>
     <artifactId>lucene-modules-parent</artifactId>
     <name>Lucene JBoss Modules parent</name>
     <packaging>pom</packaging>
