@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>lucene-modules</artifactId>
+    <packaging>pom</packaging>
 
     <name>Lucene JBoss Module</name>
     <description>Lucene JBoss Module packaging</description>
