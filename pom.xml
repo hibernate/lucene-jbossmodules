@@ -31,6 +31,23 @@
         <tag>HEAD</tag>
     </scm>
 
+    <mailingLists>
+        <mailingList>
+            <name>Hibernate Developers</name>
+            <post>hibernate-dev@lists.jboss.org</post>
+            <subscribe>https://lists.jboss.org/mailman/listinfo/hibernate-dev</subscribe>
+            <unsubscribe>https://lists.jboss.org/mailman/listinfo/hibernate-dev</unsubscribe>
+            <archive>http://lists.jboss.org/pipermail/hibernate-dev/</archive>
+            <otherArchives>
+                <otherArchive>http://www.mail-archive.com/hibernate-dev%40lists.jboss.org/index.html</otherArchive>
+            </otherArchives>
+        </mailingList>
+    </mailingLists>
+
+    <prerequisites>
+        <maven>3.2.3</maven>
+    </prerequisites>
+
     <organization>
         <name>Hibernate</name>
         <url>http://www.hibernate.org</url>
