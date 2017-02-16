@@ -11,7 +11,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>integration-tests</artifactId>
+    <artifactId>lucene-modules-integrationtests</artifactId>
     <description>Lucene JBoss Module integration tests</description>
 
     <dependencyManagement>

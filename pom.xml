@@ -70,7 +70,7 @@
 
     <modules>
         <module>lucene-modules</module>
-        <module>integration-tests</module>
+        <module>lucene-modules-integrationtests</module>
     </modules>
 
 
