@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>lucene-modules-integrationtests</artifactId>
-    <description>Lucene JBoss Module integration tests</description>
+    <name>Lucene JBoss Module integration tests</name>
 
     <dependencyManagement>
         <dependencies>
