@@ -39,7 +39,6 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-
 /**
  * Lucene module testing inside Wildfly
  *
@@ -49,130 +48,129 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Arquillian.class)
 public class LuceneModuleIT {
 
-    private static final LuceneVersion luceneVersion = new LuceneVersion();
+	private static final VersionsHelper luceneVersion = new VersionsHelper();
 
-    private Directory directory;
-    private Directory taxonomyDirectory;
+	private Directory directory;
+	private Directory taxonomyDirectory;
 
-    @Rule
-    public TemporaryFolder tmpFolder = new TemporaryFolder();
+	@Rule
+	public TemporaryFolder tmpFolder = new TemporaryFolder();
 
-    @Before
-    public void setup() throws IOException {
-        directory = FSDirectory.open(tmpFolder.newFolder().toPath());
-        taxonomyDirectory = FSDirectory.open(tmpFolder.newFolder().toPath());
-    }
+	@Before
+	public void setup() throws IOException {
+		directory = FSDirectory.open(tmpFolder.newFolder().toPath());
+		taxonomyDirectory = FSDirectory.open(tmpFolder.newFolder().toPath());
+	}
 
-    @Deployment
-    public static Archive<?> deployment() {
-        String dependencies = deps(dep("org.apache.lucene", luceneVersion.getImplVersion()));
-        StringAsset manifest = new StringAsset(
-                Descriptors.create(ManifestDescriptor.class).attribute("Dependencies", dependencies).exportAsString());
-        return ShrinkWrap.create(WebArchive.class, "lucene.war")
-                .addClasses(LuceneModuleIT.class, LuceneVersion.class)
-                .add(manifest, "META-INF/MANIFEST.MF");
-    }
+	@Deployment
+	public static Archive<?> deployment() {
+		String dependencies = deps(dep("org.apache.lucene", luceneVersion.getModuleSlot()));
+		StringAsset manifest = new StringAsset(
+				Descriptors.create(ManifestDescriptor.class).attribute("Dependencies", dependencies).exportAsString());
+		return ShrinkWrap.create(WebArchive.class, "lucene.war").addClasses(LuceneModuleIT.class, VersionsHelper.class)
+				.add(manifest, "META-INF/MANIFEST.MF");
+	}
 
-    @Test
-    public void testCoreLucene() throws IOException {
-        Document document = buildLuceneDoc("field1", "The quick brown fox jumped over the lazy dog");
-        index(document);
+	@Test
+	public void testCoreLucene() throws IOException {
+		Document document = buildLuceneDoc("field1", "The quick brown fox jumped over the lazy dog");
+		index(document);
 
-        assertEquals(9, terms("field1").size());
-    }
+		assertEquals(9, terms("field1").size());
+	}
 
-    @Test
-    public void testQParserLucene() throws IOException, ParseException {
-        Document document = buildLuceneDoc("field1", "The quick brown fox jumped over the lazy dog");
-        index(document);
-        Query matchingQuery = buildQuery("field1:box~");
-        Query nonMatchingQuery = buildQuery("-field1:over");
-        IndexSearcher indexSearcher = openSearcher();
+	@Test
+	public void testQParserLucene() throws IOException, ParseException {
+		Document document = buildLuceneDoc("field1", "The quick brown fox jumped over the lazy dog");
+		index(document);
+		Query matchingQuery = buildQuery("field1:box~");
+		Query nonMatchingQuery = buildQuery("-field1:over");
+		IndexSearcher indexSearcher = openSearcher();
 
-        assertEquals(1, indexSearcher.search(matchingQuery, 1).totalHits);
-        assertEquals(0, indexSearcher.search(nonMatchingQuery, 1).totalHits);
-    }
+		assertEquals(1, indexSearcher.search(matchingQuery, 1).totalHits);
+		assertEquals(0, indexSearcher.search(nonMatchingQuery, 1).totalHits);
+	}
 
-    @Test
-    public void testGrouping() throws IOException {
-        Document doc1 = buildLuceneDoc("field1", "value1", true);
-        Document doc2 = buildLuceneDoc("field1", "value1", true);
-        Document doc3 = buildLuceneDoc("field1", "value2", true);
-        index(doc1, doc2, doc3);
-        GroupingSearch groupingSearch = new GroupingSearch("field1");
-        TopGroups<Object> topGroups = groupingSearch.search(openSearcher(), new MatchAllDocsQuery(), 0, 10);
+	@Test
+	public void testGrouping() throws IOException {
+		Document doc1 = buildLuceneDoc("field1", "value1", true);
+		Document doc2 = buildLuceneDoc("field1", "value1", true);
+		Document doc3 = buildLuceneDoc("field1", "value2", true);
+		index(doc1, doc2, doc3);
+		GroupingSearch groupingSearch = new GroupingSearch("field1");
+		TopGroups<Object> topGroups = groupingSearch.search(openSearcher(), new MatchAllDocsQuery(), 0, 10);
 
-        assertEquals(3, topGroups.totalHitCount);
-        assertEquals(2, topGroups.groups.length);
-    }
+		assertEquals(3, topGroups.totalHitCount);
+		assertEquals(2, topGroups.groups.length);
+	}
 
-    @Test
-    public void testFaceting() throws Exception {
-        DirectoryTaxonomyWriter tw = new DirectoryTaxonomyWriter(taxonomyDirectory);
-        FacetsConfig cfg = new FacetsConfig();
-        Document doc1 = new Document();
-        Document doc2 = new Document();
-        Document doc3 = new Document();
-        doc1.add(new FacetField("category", "c2"));
-        doc2.add(new FacetField("category", "c2"));
-        doc3.add(new FacetField("category", "c1"));
-        index(cfg.build(tw, doc1), cfg.build(tw, doc2), cfg.build(tw, doc3));
-        tw.close();
-        DirectoryTaxonomyReader tr = new DirectoryTaxonomyReader(taxonomyDirectory);
-        FacetsCollector fc = new FacetsCollector();
-        FacetsCollector.search(openSearcher(), new MatchAllDocsQuery(), 10, fc);
-        Facets facets = new FastTaxonomyFacetCounts(tr, cfg, fc);
-        FacetResult category = facets.getTopChildren(10, "category");
+	@Test
+	public void testFaceting() throws Exception {
+		DirectoryTaxonomyWriter tw = new DirectoryTaxonomyWriter(taxonomyDirectory);
+		FacetsConfig cfg = new FacetsConfig();
+		Document doc1 = new Document();
+		Document doc2 = new Document();
+		Document doc3 = new Document();
+		doc1.add(new FacetField("category", "c2"));
+		doc2.add(new FacetField("category", "c2"));
+		doc3.add(new FacetField("category", "c1"));
+		index(cfg.build(tw, doc1), cfg.build(tw, doc2), cfg.build(tw, doc3));
+		tw.close();
+		DirectoryTaxonomyReader tr = new DirectoryTaxonomyReader(taxonomyDirectory);
+		FacetsCollector fc = new FacetsCollector();
+		FacetsCollector.search(openSearcher(), new MatchAllDocsQuery(), 10, fc);
+		Facets facets = new FastTaxonomyFacetCounts(tr, cfg, fc);
+		FacetResult category = facets.getTopChildren(10, "category");
 
-        assertEquals(2, category.childCount);
+		assertEquals(2, category.childCount);
 
-    }
+	}
 
-    private Query buildQuery(String q) throws ParseException {
-        QueryParser queryParser = new QueryParser("field1", new WhitespaceAnalyzer());
-        return queryParser.parse(q);
-    }
+	private Query buildQuery(String q) throws ParseException {
+		QueryParser queryParser = new QueryParser("field1", new WhitespaceAnalyzer());
+		return queryParser.parse(q);
+	}
 
-    private IndexSearcher openSearcher() throws IOException {
-        return new IndexSearcher(DirectoryReader.open(directory));
-    }
+	private IndexSearcher openSearcher() throws IOException {
+		return new IndexSearcher(DirectoryReader.open(directory));
+	}
 
-    private Terms terms(String field) throws IOException {
-        DirectoryReader reader = DirectoryReader.open(directory);
-        LeafReaderContext readerContext = reader.getContext().leaves().iterator().next();
-        return readerContext.reader().terms(field);
-    }
+	private Terms terms(String field) throws IOException {
+		DirectoryReader reader = DirectoryReader.open(directory);
+		LeafReaderContext readerContext = reader.getContext().leaves().iterator().next();
+		return readerContext.reader().terms(field);
+	}
 
-    private void index(Document... documents) throws IOException {
-        IndexWriterConfig iwc = new IndexWriterConfig(new WhitespaceAnalyzer());
-        IndexWriter indexWriter = new IndexWriter(directory, iwc);
-        for (Document doc : documents) {
-            indexWriter.addDocument(doc);
-        }
-        indexWriter.close();
-    }
-    
-    private static Document buildLuceneDoc(String fieldName, String contents) {
-    	return buildLuceneDoc(fieldName, contents, false);
-    }
+	private void index(Document... documents) throws IOException {
+		IndexWriterConfig iwc = new IndexWriterConfig(new WhitespaceAnalyzer());
+		IndexWriter indexWriter = new IndexWriter(directory, iwc);
+		for (Document doc : documents) {
+			indexWriter.addDocument(doc);
+		}
+		indexWriter.close();
+	}
 
-    private static Document buildLuceneDoc(String fieldName, String contents, boolean withDocValue) {
-        Document document = new Document();
-        FieldType fieldType = new FieldType();
-        fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
-        if (withDocValue) {
+	private static Document buildLuceneDoc(String fieldName, String contents) {
+		return buildLuceneDoc(fieldName, contents, false);
+	}
+
+	private static Document buildLuceneDoc(String fieldName, String contents, boolean withDocValue) {
+		Document document = new Document();
+		FieldType fieldType = new FieldType();
+		fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
+		if (withDocValue) {
 			document.add(new SortedDocValuesField(fieldName, new BytesRef(contents)));
-        }
-        document.add(new Field(fieldName, contents, fieldType));
-        return document;
-    }
+		}
+		document.add(new Field(fieldName, contents, fieldType));
+		return document;
+	}
 
-    private static String dep(String name, String version) {
-        return name + ":" + version + " services";
-    }
+	private static String dep(String name, String version) {
+		return name + ":" + version + " services";
+	}
 
-    private static String deps(String... dep) {
-        return Joiner.on(", ").join(dep);
-    }
+	private static String deps(String... dep) {
+		return Joiner.on(", ").join(dep);
+	}
 
 }
