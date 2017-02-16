@@ -3,6 +3,7 @@
     <id>dist</id>
     <formats>
         <format>zip</format>
+        <format>dir</format> <!-- For ease of debugging only -->
     </formats>
     <includeBaseDirectory>false</includeBaseDirectory>
     <baseDirectory>/</baseDirectory>
@@ -10,7 +11,12 @@
     <files>
         <file>
             <source>${module.xml.basedir}/lucene/module.xml</source>
-            <outputDirectory>/org/apache/lucene/${version.lucene}</outputDirectory>
+            <outputDirectory>/org/apache/lucene/${lucene.module.slot}</outputDirectory>
+            <filtered>true</filtered>
+        </file>
+        <file>
+            <source>${module.xml.basedir}/lucene_internal/module.xml</source>
+            <outputDirectory>/org/apache/lucene/internal/${lucene.module.slot}</outputDirectory>
             <filtered>true</filtered>
         </file>
     </files>
@@ -18,12 +24,29 @@
     <dependencySets>
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>org/apache/lucene/${version.lucene}</outputDirectory>
+            <outputDirectory>org/apache/lucene/${lucene.module.slot}</outputDirectory>
             <useTransitiveFiltering>false</useTransitiveFiltering>
             <unpack>false</unpack>
             <includes>
-                <include>org.apache.lucene:*</include>
+                <include>org.apache.lucene:lucene-core</include>
+                <include>org.apache.lucene:lucene-analyzers-common</include>
+                <include>org.apache.lucene:lucene-queryparser</include>
+                <include>org.apache.lucene:lucene-queries</include>
+                <include>org.apache.lucene:lucene-facet</include>
+                <include>org.apache.lucene:lucene-grouping</include>
+            </includes>
+        </dependencySet>
+
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>org/apache/lucene/internal/${lucene.module.slot}</outputDirectory>
+            <useTransitiveFiltering>false</useTransitiveFiltering>
+            <unpack>false</unpack>
+            <includes>
+                <include>org.apache.lucene:lucene-backward-codecs</include>
+                <include>org.apache.lucene:lucene-misc</include>
             </includes>
         </dependencySet>
     </dependencySets>
+
 </assembly>
