@@ -29,7 +29,7 @@
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
-                <version>${shrinkwrapResolverVersion}</version>
+                <version>${version.shrinkwrap}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -37,7 +37,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>${arquillianVersion}</version>
+                <version>${version.arquillian}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -59,7 +59,7 @@
         <dependency>
             <groupId>org.wildfly.arquillian</groupId>
             <artifactId>wildfly-arquillian-container-managed</artifactId>
-            <version>${arquillianContainerVersion}</version>
+            <version>${version.arquilliancontainer}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

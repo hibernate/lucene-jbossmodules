@@ -15,9 +15,9 @@
         <slot.simple.id>5.5</slot.simple.id>
         <version.wildfly>10.1.0.Final</version.wildfly>
         <!-- Integration test dependencies; typically need to match WildFly version -->
-        <arquillianVersion>1.1.11.Final</arquillianVersion>
-        <arquillianContainerVersion>2.0.0.Final</arquillianContainerVersion>
-        <shrinkwrapResolverVersion>2.2.2</shrinkwrapResolverVersion>
+        <version.arquillian>1.1.11.Final</version.arquillian>
+        <version.arquilliancontainer>2.0.0.Final</version.arquilliancontainer>
+        <version.shrinkwrap>2.2.2</version.shrinkwrap>
         <version.junit>4.11</version.junit>
         <!-- character encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
