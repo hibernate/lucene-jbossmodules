@@ -7,7 +7,7 @@
     <artifactId>lucene-modules-parent</artifactId>
     <name>Lucene JBoss Modules parent</name>
     <packaging>pom</packaging>
-    <version>5.5.0-SNAPSHOT</version>
+    <version>5.5.4-SNAPSHOT</version>
 
     <properties>
         <version.lucene>5.5.4</version.lucene>

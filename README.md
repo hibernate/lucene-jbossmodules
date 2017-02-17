@@ -15,14 +15,17 @@ is released, without necessarily waiting for Hibernate Search to have adopted th
 
 == Versions
 
-While it would be tempting to follow the versions of the bundled Apache Lucene versions,
-this wouldn't allow to release improvements nor bugfixes in the module structure itself.
+We will use an `X.Y.Z.qualifier` pattern as recommended by [JBoss Project Versioning](https://developer.jboss.org/wiki/JBossProjectVersioning),
+wherein the `X.Y.Z` section will match the version of the Apache Lucene version included in the modules,
+possibly using a `0` for the last figure when this is missing in the Lucene version scheme.
 
-We will use an X.Y.Z pattern with an optional qualifier as defined on [JBoss Project Versioning](https://developer.jboss.org/wiki/JBossProjectVersioning), where X.Y will match the major and minor versions of the included Lucene version.
+We will add an additional qualifier, lexicographically increasing with further releases, to distinguish
+different releases of this package when still containing the same version of Apache Lucene library.
+This might be useful to address problems in the package structure, or any other reason to have
+to release a new version of these modules containing the same Lucene version as a previously
+released copy of these modules.
 
-The micro version will not necessarily match the Lucene version: we will increase this for any change;
-this includes upgrading the actual Lucene version but might also be incremented because of other patches
-applied to this project.
+An example version could be `5.5.0.wildfly02` to contain Apache Lucene version `5.5`.
 
 == Usage
 
