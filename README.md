@@ -13,7 +13,7 @@ of such modules.
 This should also make it easier to release a new bundle of these modules as soon as a new Lucene version
 is released, without necessarily waiting for Hibernate Search to have adopted the new Lucene version.
 
-== Versions
+## Version conventions
 
 We will use an `X.Y.Z.qualifier` pattern as recommended by [JBoss Project Versioning](https://developer.jboss.org/wiki/JBossProjectVersioning),
 wherein the `X.Y.Z` section will match the version of the Apache Lucene version included in the modules,
@@ -27,7 +27,7 @@ released copy of these modules.
 
 An example version could be `5.5.0.wildfly02` to contain Apache Lucene version `5.5`.
 
-== Usage
+## Usage
 
 Extract the produced module zip in the `/modules` directory of your WildFly 10 distribution.
 
@@ -69,6 +69,6 @@ for example using the `maven-dependency-plugin`.
 	</plugin>
 
 This will make them available as an opt-in dependency to any application deployed on WildFly.
-To enable the dependency there are various options, documented in [https://docs.jboss.org/author/display/WFLY10/Class+Loading+in+WildFly](Class Loading in WildFly).
+To enable the dependency there are various options, documented in [Class Loading in WildFly](https://docs.jboss.org/author/display/WFLY10/Class+Loading+in+WildFly).
 
 
