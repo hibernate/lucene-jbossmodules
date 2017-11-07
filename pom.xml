@@ -13,7 +13,7 @@
         <version.lucene>5.5.5</version.lucene>
         <!-- This should match the major.minor of the Lucene version, optionally revisioned with module micro fixes -->
         <slot.simple.id>5.5</slot.simple.id>
-        <version.wildfly>10.1.0.Final</version.wildfly>
+        <version.wildfly>11.0.0.Final</version.wildfly>
         <!-- Integration test dependencies; typically need to match WildFly version -->
         <version.arquillian>1.1.11.Final</version.arquillian>
         <version.arquilliancontainer>2.0.0.Final</version.arquilliancontainer>
