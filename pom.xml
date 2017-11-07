@@ -3,8 +3,8 @@
          xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.hibernate.lucene-modules</groupId>
-    <artifactId>lucene-modules-parent</artifactId>
+    <groupId>org.hibernate.lucene-jbossmodules</groupId>
+    <artifactId>lucene-jbossmodules-parent</artifactId>
     <name>Lucene JBoss Modules parent</name>
     <packaging>pom</packaging>
     <version>5.5.5-SNAPSHOT</version>
@@ -25,9 +25,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git://github.com/hibernate/lucene-modules.git</connection>
-        <developerConnection>scm:git:git@github.com:hibernate/lucene-modules.git</developerConnection>
-        <url>http://github.com/hibernate/lucene-modules</url>
+        <connection>scm:git:git://github.com/hibernate/lucene-jbossmodules.git</connection>
+        <developerConnection>scm:git:git@github.com:hibernate/lucene-jbossmodules.git</developerConnection>
+        <url>http://github.com/hibernate/lucene-jbossmodules</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -70,7 +70,7 @@
         <dependencies>
             <dependency>
                 <groupId>org.hibernate</groupId>
-                <artifactId>lucene-modules</artifactId>
+                <artifactId>lucene-jbossmodules</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -209,8 +209,8 @@
     </build>
 
     <modules>
-        <module>lucene-modules</module>
-        <module>lucene-modules-integrationtests</module>
+        <module>lucene-jbossmodules</module>
+        <module>lucene-jbossmodules-integrationtests</module>
     </modules>
 
 </project>

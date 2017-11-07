@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.hibernate.lucene-modules</groupId>
-        <artifactId>lucene-modules-parent</artifactId>
+        <groupId>org.hibernate.lucene-jbossmodules</groupId>
+        <artifactId>lucene-jbossmodules-parent</artifactId>
         <version>5.5.5-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>lucene-modules</artifactId>
+    <artifactId>lucene-jbossmodules</artifactId>
     <packaging>pom</packaging>
 
     <name>Lucene JBoss Module</name>

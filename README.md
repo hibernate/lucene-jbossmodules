@@ -55,7 +55,7 @@ for example using the `maven-dependency-plugin`.
 		            </artifactItem>
 		            <artifactItem>
 		                <groupId>org.hibernate.lucene-modules</groupId>
-		                <artifactId>lucene-modules</artifactId>
+		                <artifactId>lucene-jbossmodules</artifactId>
 		                <version>${lucene-modules.version}</version>
 		                <type>zip</type>
 		                <classifier>dist</classifier>
