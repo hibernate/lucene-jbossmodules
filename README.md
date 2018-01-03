@@ -1,7 +1,7 @@
 Lucene JBoss Module
 ===================
 
-Packaging of [Apache Lucene](http://lucene.apache.org) as a [JBoss Module](https://docs.jboss.org/author/display/MODULES/Home).
+Packaging of [Apache Lucene](http://lucene.apache.org) as a [JBoss Module](https://jboss-modules.github.io/jboss-modules/manual/).
 
 Historically the Hibernate Search project has been releasing such modules, for convenience of Apache Lucene
 users running applications on WildFly or JBoss EAP.
@@ -69,6 +69,6 @@ for example using the `maven-dependency-plugin`.
 	</plugin>
 
 This will make them available as an opt-in dependency to any application deployed on WildFly.
-To enable the dependency there are various options, documented in [Class Loading in WildFly](https://docs.jboss.org/author/display/WFLY10/Class+Loading+in+WildFly).
+To enable the dependency there are various options, documented in [Class Loading in WildFly](https://docs.jboss.org/author/display/WFLY/Class+Loading+in+WildFly).
 
 
