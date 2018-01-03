@@ -71,4 +71,16 @@ for example using the `maven-dependency-plugin`.
 This will make them available as an opt-in dependency to any application deployed on WildFly.
 To enable the dependency there are various options, documented in [Class Loading in WildFly](https://docs.jboss.org/author/display/WFLY/Class+Loading+in+WildFly).
 
+## How to Release
+
+    mvn release:prepare
+    mvn release:perform
+
+This will produce two local commits and a local tag, then upload the artifacts to a staging repository on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome).
+
+If it all works fine, don't forget to:
+
+ * release the staging repository on Nexus
+ * push the commits
+ * push the tag
 
