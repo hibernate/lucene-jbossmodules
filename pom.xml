@@ -6,8 +6,11 @@
     <groupId>org.hibernate.lucene-jbossmodules</groupId>
     <artifactId>lucene-jbossmodules-parent</artifactId>
     <name>Lucene JBoss Modules parent</name>
+    <url>https://github.com/hibernate/lucene-jbossmodules</url>
+    <description>Distribution of Lucene packaged into JBoss Modules</description>
     <packaging>pom</packaging>
     <version>5.5.5-SNAPSHOT</version>
+    <inceptionYear>2014</inceptionYear>
 
     <properties>
         <version.lucene>5.5.5</version.lucene>
@@ -30,6 +33,30 @@
         <url>http://github.com/hibernate/lucene-jbossmodules</url>
         <tag>HEAD</tag>
     </scm>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>Sanne</id>
+            <name>Sanne Grinovero</name>
+            <email>sanne@hibernate.org</email>
+            <organization>Red Hat, Inc.</organization>
+            <url>http://in.relation.to/sanne-grinovero/</url>
+        </developer>
+        <developer>
+            <id>yoann.rodiere</id>
+            <name>Yoann Rodière</name>
+            <email>yoann@hibernate.org</email>
+            <organization>Red Hat, Inc.</organization>
+            <url>http://in.relation.to/yoann-rodiere/</url>
+        </developer>
+    </developers>
 
     <mailingLists>
         <mailingList>
