@@ -25,7 +25,7 @@ This might be useful to address problems in the package structure, or any other 
 to release a new version of these modules containing the same Lucene version as a previously
 released copy of these modules.
 
-An example version could be `5.5.0.wildfly02` to contain Apache Lucene version `5.5`.
+An example version could be `5.5.0.hibernate02` to contain Apache Lucene version `5.5`.
 
 ## Usage
 
