@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-         xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.hibernate.lucene-jbossmodules</groupId>
@@ -9,7 +8,7 @@
     <url>https://github.com/hibernate/lucene-jbossmodules</url>
     <description>Distribution of Lucene packaged into JBoss Modules</description>
     <packaging>pom</packaging>
-    <version>5.5.5-SNAPSHOT</version>
+    <version>5.5.5.hibernate01</version>
     <inceptionYear>2014</inceptionYear>
 
     <properties>
@@ -31,7 +30,7 @@
         <connection>scm:git:git://github.com/hibernate/lucene-jbossmodules.git</connection>
         <developerConnection>scm:git:git@github.com:hibernate/lucene-jbossmodules.git</developerConnection>
         <url>http://github.com/hibernate/lucene-jbossmodules</url>
-        <tag>HEAD</tag>
+        <tag>5.5.5.hibernate01</tag>
     </scm>
 
     <licenses>
