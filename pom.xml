@@ -8,7 +8,7 @@
     <url>https://github.com/hibernate/lucene-jbossmodules</url>
     <description>Distribution of Lucene packaged into JBoss Modules</description>
     <packaging>pom</packaging>
-    <version>5.5.5.hibernate02</version>
+    <version>5.5.5-SNAPSHOT</version>
     <inceptionYear>2014</inceptionYear>
 
     <properties>
@@ -30,7 +30,7 @@
         <connection>scm:git:git://github.com/hibernate/lucene-jbossmodules.git</connection>
         <developerConnection>scm:git:git@github.com:hibernate/lucene-jbossmodules.git</developerConnection>
         <url>http://github.com/hibernate/lucene-jbossmodules</url>
-        <tag>5.5.5.hibernate02</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
