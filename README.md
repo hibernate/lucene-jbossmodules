@@ -1,7 +1,8 @@
-Lucene JBoss Module
-===================
+Apache Lucene JBoss Module as WildFly feature pack
+==================================================
 
-Packaging of [Apache Lucene](http://lucene.apache.org) as a [JBoss Module](https://jboss-modules.github.io/jboss-modules/manual/).
+This creates a set of [JBoss Module](https://jboss-modules.github.io/jboss-modules/manual/)s containing [Apache Lucene](http://lucene.apache.org)
+and packages the lucene libraries into a WildFly *feature pack* for easy provisioning into your custom [WildFly](http://wildfly.org/) server or [WildFly Swarm](http://wildfly-swarm.io/).
 
 Historically the Hibernate Search project has been releasing such modules, for convenience of Apache Lucene
 users running applications on WildFly or JBoss EAP.
@@ -27,56 +28,60 @@ released copy of these modules.
 
 An example version could be `5.5.0.hibernate02` to contain Apache Lucene version `5.5`.
 
-## Download
+## Usage: server provisioning via Maven
 
-Released module ZIPs are available on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome)
-and Maven Central as `org.hibernate.lucene-jbossmodules:lucene-jbossmodules:<version>:zip:dist`.
+Maven users can use the `wildfly-server-provisioning-maven-plugin` to create a custom WildFly server including these modules:
 
-Here is a link to the [parent directory containing all releases](https://repository.jboss.org/nexus/content/groups/public/org/hibernate/lucene-jbossmodules/lucene-jbossmodules/).
-
-## Usage
-
-Extract the produced module zip in the `/modules` directory of your WildFly 10 distribution.
-
-The modules are distributed as Maven artifacts, so when using Maven you could automate this step
-for example using the `maven-dependency-plugin`.
-
-	<plugin>
-	    <artifactId>maven-dependency-plugin</artifactId>
-	    <executions>
-		<execution>
-		    <id>unpack</id>
-		    <phase>pre-integration-test</phase>
-		    <goals>
-		        <goal>unpack</goal>
-		    </goals>
-		    <configuration>
-		        <artifactItems>
-		            <artifactItem>
-		                <groupId>org.wildfly</groupId>
-		                <artifactId>wildfly-dist</artifactId>
-		                <version>${wildfly.version}</version>
-		                <type>zip</type>
-		                <overWrite>true</overWrite>
-		                <outputDirectory>${project.build.directory}/node1</outputDirectory>
-		            </artifactItem>
-		            <artifactItem>
-		                <groupId>org.hibernate.lucene-jbossmodules</groupId>
-		                <artifactId>lucene-jbossmodules</artifactId>
-		                <version>${lucene-modules.version}</version>
-		                <type>zip</type>
-		                <classifier>dist</classifier>
-		                <overWrite>true</overWrite>
-		                <outputDirectory>${project.build.directory}/node1/wildfly-${wildfly.version}/modules</outputDirectory>
-		            </artifactItem>
-		        </artifactItems>
-		    </configuration>
-		</execution>
-	    </executions>
+	<plugins>
+		<plugin>
+		<groupId>org.wildfly.build</groupId>
+		<artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
+		<version>1.2.0.Final</version>
+		<executions>
+			<execution>
+			<id>server-provisioning</id>
+			<goals>
+				<goal>build</goal>
+			</goals>
+			<phase>compile</phase>
+			<configuration>
+				<config-file>server-provisioning.xml</config-file>
+				<server-name>minimal-wildfly-with-lucene</server-name>
+			</configuration>
+			</execution>
+		</executions>
 	</plugin>
 
-This will make them available as an opt-in dependency to any application deployed on WildFly.
+You will also need a `server-provisioning.xml` in the root of your project:
+
+	<server-provisioning xmlns="urn:wildfly:server-provisioning:1.1">
+		<feature-packs>
+	
+			<feature-pack
+				groupId="org.hibernate.lucene-jbossmodules"
+				artifactId="lucene-jbossmodules"
+				version="${lucene-modules.version}"/>
+	
+			<feature-pack
+				groupId="org.wildfly"
+				artifactId="wildfly-servlet-feature-pack"
+				version="${your-preferred-wildfly.version}" />
+	
+		</feature-packs>
+	</server-provisioning>
+
+This will make Lucene available as an opt-in dependency to any application deployed on WildFly.
 To enable the dependency there are various options, documented in [Class Loading in WildFly](https://docs.jboss.org/author/display/WFLY/Class+Loading+in+WildFly).
+
+N.B. the current version of these modules has been tested with `WildFly 11.0.0.Final`.
+
+## Non-Maven users
+
+Plugins for other build tools have not been implemented yet, but this should be quite straight forward to do: the above Maven plugin is just a thin wrapper invoking other libraries; these other libraries are build agnostic and are responsible for performing most of the work.
+
+See also [WildFly provisioning build tools](https://github.com/wildfly/wildfly-build-tools).
+
+The feature packs are also available for downloads as zip files on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome).
 
 ## How to Release
 

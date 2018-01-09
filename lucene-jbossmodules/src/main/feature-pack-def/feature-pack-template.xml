@@ -1,0 +1,3 @@
+<build xmlns="urn:wildfly:feature-pack-build:1.1">
+    <!-- Intentionally empty: Lucene has no further dependencies -->
+</build>

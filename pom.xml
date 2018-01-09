@@ -15,6 +15,10 @@
         <version.lucene>5.5.5</version.lucene>
         <!-- This should match the major.minor of the Lucene version, optionally revisioned with module micro fixes -->
         <slot.simple.id>5.5</slot.simple.id>
+        <slot.full.id>${version.lucene}</slot.full.id>
+        <!-- Needs to match the WildFly core version used by the WildFly server version we target-->
+        <version.org.wildfly.core>3.0.8.Final</version.org.wildfly.core>
+        <!-- Used for integrations tests - try to keep matching the above property -->
         <version.wildfly>11.0.0.Final</version.wildfly>
         <!-- Integration test dependencies; typically need to match WildFly version -->
         <version.arquillian>1.1.11.Final</version.arquillian>
@@ -140,6 +144,12 @@
                 <artifactId>lucene-misc</artifactId>
                 <version>${version.lucene}</version>
             </dependency>
+            <dependency>
+                <groupId>org.wildfly.core</groupId>
+                <artifactId>wildfly-core-feature-pack</artifactId>
+                <version>${version.org.wildfly.core}</version>
+                <type>zip</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -188,13 +198,22 @@
                         <requireMavenVersion>
                             <version>3.5.0</version>
                         </requireMavenVersion>
-                        <DependencyConvergence />
                     </rules>
                 </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.wildfly.build</groupId>
+                    <artifactId>wildfly-feature-pack-build-maven-plugin</artifactId>
+                    <version>1.2.5.Final</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.wildfly.build</groupId>
+                    <artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
+                    <version>1.2.5.Final</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>

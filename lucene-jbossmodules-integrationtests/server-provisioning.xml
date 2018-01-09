@@ -1,0 +1,15 @@
+<server-provisioning xmlns="urn:wildfly:server-provisioning:1.1">
+	<feature-packs>
+
+		<feature-pack
+			groupId="org.hibernate.lucene-jbossmodules"
+			artifactId="lucene-jbossmodules"
+			version="${project.version}"/>
+
+		<feature-pack
+			groupId="org.wildfly"
+			artifactId="wildfly-servlet-feature-pack"
+			version="${version.wildfly}" />
+
+	</feature-packs>
+</server-provisioning>
