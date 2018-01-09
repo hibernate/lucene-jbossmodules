@@ -37,6 +37,7 @@
             <outputDirectory>org/apache/lucene/${version.lucene}</outputDirectory>
             <useTransitiveFiltering>false</useTransitiveFiltering>
             <unpack>false</unpack>
+            <scope>provided</scope>
             <includes>
                 <include>org.apache.lucene:lucene-core</include>
                 <include>org.apache.lucene:lucene-analyzers-common</include>
@@ -52,6 +53,7 @@
             <outputDirectory>org/apache/lucene/internal/${version.lucene}</outputDirectory>
             <useTransitiveFiltering>false</useTransitiveFiltering>
             <unpack>false</unpack>
+            <scope>provided</scope>
             <includes>
                 <include>org.apache.lucene:lucene-backward-codecs</include>
                 <include>org.apache.lucene:lucene-misc</include>
