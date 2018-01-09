@@ -27,6 +27,13 @@ released copy of these modules.
 
 An example version could be `5.5.0.hibernate02` to contain Apache Lucene version `5.5`.
 
+## Download
+
+Released module ZIPs are available on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome)
+and Maven Central as `org.hibernate.lucene-jbossmodules:lucene-jbossmodules:<version>:dist:zip`.
+
+Here is a link to the [parent directory containing all releases](https://repository.jboss.org/nexus/content/groups/public/org/hibernate/lucene-jbossmodules/lucene-jbossmodules/).
+
 ## Usage
 
 Extract the produced module zip in the `/modules` directory of your WildFly 10 distribution.
