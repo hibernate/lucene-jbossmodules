@@ -54,7 +54,7 @@ for example using the `maven-dependency-plugin`.
 		                <outputDirectory>${project.build.directory}/node1</outputDirectory>
 		            </artifactItem>
 		            <artifactItem>
-		                <groupId>org.hibernate.lucene-modules</groupId>
+		                <groupId>org.hibernate.lucene-jbossmodules</groupId>
 		                <artifactId>lucene-jbossmodules</artifactId>
 		                <version>${lucene-modules.version}</version>
 		                <type>zip</type>
