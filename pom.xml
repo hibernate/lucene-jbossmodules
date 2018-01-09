@@ -164,7 +164,6 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <goals>deploy</goals>
-                    <arguments>-DskipTests</arguments>
                     <pushChanges>false</pushChanges>
                     <localCheckout>true</localCheckout>
                     <preparationGoals>clean install</preparationGoals>
