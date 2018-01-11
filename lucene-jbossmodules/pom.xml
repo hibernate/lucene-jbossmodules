@@ -17,7 +17,7 @@
     <description>Lucene JBoss Module packaging</description>
 
     <properties>
-        <module.xml.basedir>src/main/modules</module.xml.basedir>
+        <template.dir>${project.build.directory}/module-templates/</template.dir>
     </properties>
 
     <dependencies>
@@ -73,6 +73,92 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>gen-module-lucene</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/${slot.full.id}/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/modules/lucene</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gen-alias-lucene</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/${slot.simple.id}/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/modules/aliases/lucene</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gen-module-luceneinternal</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/internal/${slot.full.id}/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/modules/lucene_internal</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gen-alias-luceneinternal</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/internal/${slot.simple.id}/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/modules/aliases/lucene_internal</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>gen-feature-pack-buildfile</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${template.dir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/feature-pack-def</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.wildfly.build</groupId>
                 <artifactId>wildfly-feature-pack-build-maven-plugin</artifactId>
                 <executions>
@@ -83,7 +169,8 @@
                         </goals>
                         <phase>compile</phase>
                         <configuration>
-                            <config-file>feature-pack-build.xml</config-file>
+                            <config-file>feature-pack-template.xml</config-file>
+                            <config-dir>${project.build.directory}/module-templates</config-dir>
                         </configuration>
                     </execution>
                 </executions>

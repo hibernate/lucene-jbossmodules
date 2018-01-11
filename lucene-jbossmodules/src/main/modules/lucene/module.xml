@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module xmlns="urn:jboss:module:1.3" name="org.apache.lucene" slot="${version.lucene}">
+<module xmlns="urn:jboss:module:1.3" name="org.apache.lucene" slot="${slot.full.id}">
     <properties>
         <property name="jboss.api" value="private"/>
     </properties>
     <resources>
-        <resource-root path="lucene-core-${version.lucene}.jar" />
-        <resource-root path="lucene-analyzers-common-${version.lucene}.jar" />
-        <resource-root path="lucene-queryparser-${version.lucene}.jar" />
-        <resource-root path="lucene-queries-${version.lucene}.jar" />
-        <resource-root path="lucene-facet-${version.lucene}.jar" />
-        <resource-root path="lucene-grouping-${version.lucene}.jar" />
+        <resource-root path="${org.apache.lucene:lucene-core}" />
+        <resource-root path="${org.apache.lucene:lucene-analyzers-common}" />
+        <resource-root path="${org.apache.lucene:lucene-queryparser}" />
+        <resource-root path="${org.apache.lucene:lucene-queries}" />
+        <resource-root path="${org.apache.lucene:lucene-facet}" />
+        <resource-root path="${org.apache.lucene:lucene-grouping}" />
     </resources>
     <dependencies>
         <module name="javax.api" optional="true" />
-        <module name="org.apache.lucene.internal" optional="true" slot="${version.lucene}" services="import" />
+        <module name="org.apache.lucene.internal" optional="true" slot="${slot.full.id}" services="import" />
     </dependencies>
 </module>
