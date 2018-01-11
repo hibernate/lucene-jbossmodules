@@ -2,7 +2,7 @@
     <dependencies>
         <artifact name="org.wildfly.core:wildfly-core-feature-pack"/>
     </dependencies>
-    <!-- <copy-artifacts>
+    <copy-artifacts>
         <copy-artifact
             artifact="org.apache.lucene:lucene-core"
             to-location="modules/system/layers/base/org/apache/lucene/main/"/>
@@ -27,5 +27,5 @@
         <copy-artifact
             artifact="org.apache.lucene:lucene-misc"
             to-location="modules/system/layers/base/org/apache/lucene/internal/main/"/>
-    </copy-artifacts> -->
+    </copy-artifacts>
 </build>
