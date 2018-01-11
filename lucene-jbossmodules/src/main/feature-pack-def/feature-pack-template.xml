@@ -2,30 +2,4 @@
     <dependencies>
         <artifact name="org.wildfly.core:wildfly-core-feature-pack"/>
     </dependencies>
-    <copy-artifacts>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-core"
-            to-location="modules/system/layers/base/org/apache/lucene/${slot.full.id}/"/>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-analyzers-common"
-            to-location="modules/system/layers/base/org/apache/lucene/${slot.full.id}/"/>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-queryparser"
-            to-location="modules/system/layers/base/org/apache/lucene/${slot.full.id}/"/>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-queries"
-            to-location="modules/system/layers/base/org/apache/lucene/${slot.full.id}/"/>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-facet"
-            to-location="modules/system/layers/base/org/apache/lucene/${slot.full.id}/"/>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-grouping"
-            to-location="modules/system/layers/base/org/apache/lucene/${slot.full.id}/"/>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-backward-codecs"
-            to-location="modules/system/layers/base/org/apache/lucene/internal/${slot.full.id}/"/>
-        <copy-artifact
-            artifact="org.apache.lucene:lucene-misc"
-            to-location="modules/system/layers/base/org/apache/lucene/internal/${slot.full.id}/"/>
-    </copy-artifacts>
 </build>

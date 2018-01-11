@@ -17,7 +17,8 @@
     <description>Lucene JBoss Module packaging</description>
 
     <properties>
-        <template.dir>${project.build.directory}/module-templates/</template.dir>
+        <featurepack.dir>${project.build.directory}/feature-pack/src/main/resources</featurepack.dir>
+        <template.dir>${featurepack.dir}/modules/</template.dir>
     </properties>
 
     <dependencies>
@@ -83,7 +84,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/${slot.full.id}/</outputDirectory>
+                            <outputDirectory>${template.dir}/system/layers/base/org/apache/lucene/${slot.full.id}/</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/modules/lucene</directory>
@@ -99,7 +100,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/${slot.simple.id}/</outputDirectory>
+                            <outputDirectory>${template.dir}/system/layers/base/org/apache/lucene/${slot.simple.id}/</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/modules/aliases/lucene</directory>
@@ -115,7 +116,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/internal/${slot.full.id}/</outputDirectory>
+                            <outputDirectory>${template.dir}/system/layers/base/org/apache/lucene/internal/${slot.full.id}/</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/modules/lucene_internal</directory>
@@ -131,7 +132,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${template.dir}/modules/system/layers/base/org/apache/lucene/internal/${slot.simple.id}/</outputDirectory>
+                            <outputDirectory>${template.dir}/system/layers/base/org/apache/lucene/internal/${slot.simple.id}/</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/modules/aliases/lucene_internal</directory>
@@ -147,7 +148,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${template.dir}</outputDirectory>
+                            <outputDirectory>${featurepack.dir}</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>src/main/feature-pack-def</directory>
@@ -170,7 +171,8 @@
                         <phase>compile</phase>
                         <configuration>
                             <config-file>feature-pack-template.xml</config-file>
-                            <config-dir>${project.build.directory}/module-templates</config-dir>
+                            <config-dir>${featurepack.dir}</config-dir>
+                            <resourcesDir>/</resourcesDir>
                         </configuration>
                     </execution>
                 </executions>

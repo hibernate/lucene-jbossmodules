@@ -4,8 +4,8 @@
         <property name="jboss.api" value="private"/>
     </properties>
     <resources>
-        <resource-root path="${org.apache.lucene:lucene-backward-codecs}"/>
-        <resource-root path="${org.apache.lucene:lucene-misc}"/>
+        <artifact name="${org.apache.lucene:lucene-backward-codecs}"/>
+        <artifact name="${org.apache.lucene:lucene-misc}"/>
     </resources>
     <dependencies>
         <module name="javax.api" optional="true" />

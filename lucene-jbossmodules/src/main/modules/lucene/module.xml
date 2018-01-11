@@ -4,12 +4,12 @@
         <property name="jboss.api" value="private"/>
     </properties>
     <resources>
-        <resource-root path="${org.apache.lucene:lucene-core}" />
-        <resource-root path="${org.apache.lucene:lucene-analyzers-common}" />
-        <resource-root path="${org.apache.lucene:lucene-queryparser}" />
-        <resource-root path="${org.apache.lucene:lucene-queries}" />
-        <resource-root path="${org.apache.lucene:lucene-facet}" />
-        <resource-root path="${org.apache.lucene:lucene-grouping}" />
+        <artifact name="${org.apache.lucene:lucene-core}" />
+        <artifact name="${org.apache.lucene:lucene-analyzers-common}" />
+        <artifact name="${org.apache.lucene:lucene-queryparser}" />
+        <artifact name="${org.apache.lucene:lucene-queries}" />
+        <artifact name="${org.apache.lucene:lucene-facet}" />
+        <artifact name="${org.apache.lucene:lucene-grouping}" />
     </resources>
     <dependencies>
         <module name="javax.api" optional="true" />

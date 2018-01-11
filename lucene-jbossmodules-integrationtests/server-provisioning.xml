@@ -1,4 +1,4 @@
-<server-provisioning xmlns="urn:wildfly:server-provisioning:1.1" extract-schemas="true" copy-module-artifacts="true"
+<server-provisioning xmlns="urn:wildfly:server-provisioning:1.1" extract-schemas="true"
                      extract-schemas-groups="org.jboss.as org.wildfly org.wildfly.core">
     <feature-packs>
         <feature-pack groupId="org.wildfly" artifactId="wildfly-servlet-feature-pack" version="11.0.0.Final">
