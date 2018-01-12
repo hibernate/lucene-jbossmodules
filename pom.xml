@@ -15,7 +15,9 @@
         <version.lucene>5.5.5</version.lucene>
         <!-- This should match the major.minor of the Lucene version, optionally revisioned with module micro fixes -->
         <slot.simple.id>5.5</slot.simple.id>
-        <version.wildfly>11.0.0.Final</version.wildfly>
+        <slot.full.id>${version.lucene}</slot.full.id>
+        <!-- Needs to match the target WildFly server version -->
+        <version.org.wildfly.core>3.0.8.Final</version.org.wildfly.core>
         <!-- Integration test dependencies; typically need to match WildFly version -->
         <version.arquillian>1.1.11.Final</version.arquillian>
         <version.arquilliancontainer>2.0.0.Final</version.arquilliancontainer>
@@ -144,6 +146,12 @@
                 <artifactId>lucene-misc</artifactId>
                 <version>${version.lucene}</version>
             </dependency>
+            <dependency>
+                <groupId>org.wildfly.core</groupId>
+                <artifactId>wildfly-core-feature-pack</artifactId>
+                <version>${version.org.wildfly.core}</version>
+                <type>zip</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -192,13 +200,17 @@
                         <requireMavenVersion>
                             <version>3.2.3</version>
                         </requireMavenVersion>
-                        <DependencyConvergence />
                     </rules>
                 </configuration>
             </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.wildfly.build</groupId>
+                    <artifactId>wildfly-feature-pack-build-maven-plugin</artifactId>
+                    <version>1.2.4.Final</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>

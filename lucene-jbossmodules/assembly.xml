@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly>
+    <formats>
+        <format>zip</format>
+        <!--<format>dir</format>  For ease of debugging enable this -->
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>target/lucene-jbossmodules-${project.version}</directory>
+            <outputDirectory/>
+        </fileSet>
+    </fileSets>
+</assembly>

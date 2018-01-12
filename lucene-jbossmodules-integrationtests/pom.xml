@@ -86,6 +86,25 @@
             <artifactId>lucene-analyzers-common</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate.lucene-jbossmodules</groupId>
+            <artifactId>lucene-jbossmodules</artifactId>
+            <type>pom</type>
+            <scope>provided</scope>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.lucene-jbossmodules</groupId>
+            <artifactId>lucene-jbossmodules</artifactId>
+            <type>zip</type>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
@@ -120,35 +139,17 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <groupId>org.wildfly.build</groupId>
+                <artifactId>wildfly-server-provisioning-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>unpack</id>
-                        <phase>pre-integration-test</phase>
+                        <id>server-provisioning</id>
                         <goals>
-                            <goal>unpack</goal>
+                            <goal>build</goal>
                         </goals>
+                        <phase>compile</phase>
                         <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.wildfly</groupId>
-                                    <artifactId>wildfly-servlet-dist</artifactId>
-                                    <version>${version.wildfly}</version>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.hibernate.lucene-jbossmodules</groupId>
-                                    <artifactId>lucene-jbossmodules</artifactId>
-                                    <version>${project.version}</version>
-                                    <type>zip</type>
-                                    <classifier>dist</classifier>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/wildfly-servlet-${version.wildfly}/modules
-                                    </outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
+                            <config-file>server-provisioning.xml</config-file>
                         </configuration>
                     </execution>
                 </executions>
