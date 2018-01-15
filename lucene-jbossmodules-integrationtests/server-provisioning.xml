@@ -1,0 +1,31 @@
+<server-provisioning xmlns="urn:wildfly:server-provisioning:1.1">
+    <feature-packs>
+
+        <feature-pack groupId="org.hibernate.lucene-jbossmodules" artifactId="lucene-jbossmodules" version="${project.version}" />
+
+        <feature-pack groupId="org.wildfly" artifactId="wildfly-feature-pack" version="${version.wildfly}">
+            <!-- Filters not necessary: just to keep tests light -->
+            <contents>
+                <filter
+                    pattern="copyright.txt"
+                    include="false"/>
+                <filter
+                    pattern="README.txt"
+                    include="false"/>
+                    <filter
+                    pattern="LICENSE.txt"
+                    include="false"/>
+                <filter
+                    pattern="docs/*"
+                    include="false"/>
+                <filter
+                    pattern="welcome-content/*"
+                    include="false"/>
+                <filter
+                    pattern="bin/*"
+                    include="false"/>
+            </contents>
+        </feature-pack>
+
+    </feature-packs>
+</server-provisioning>
