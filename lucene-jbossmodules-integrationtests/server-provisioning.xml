@@ -3,7 +3,7 @@
 
         <feature-pack groupId="org.hibernate.lucene-jbossmodules" artifactId="lucene-jbossmodules" version="${project.version}" />
 
-        <feature-pack groupId="org.wildfly" artifactId="wildfly-servlet-feature-pack" version="${version.wildfly}">
+        <feature-pack groupId="org.wildfly" artifactId="wildfly-feature-pack" version="${version.wildfly}">
             <!-- Filters not necessary: just to keep tests light -->
             <contents>
                 <filter
