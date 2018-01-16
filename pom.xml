@@ -274,8 +274,8 @@
     </build>
 
     <modules>
-        <module>lucene-jbossmodules</module>
-        <module>lucene-jbossmodules-integrationtests</module>
+        <module>jbossmodules</module>
+        <module>integrationtests</module>
     </modules>
 
 </project>
