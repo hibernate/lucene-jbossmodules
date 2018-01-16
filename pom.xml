@@ -16,9 +16,7 @@
         <!-- This should match the major.minor of the Lucene version, optionally revisioned with module micro fixes -->
         <slot.simple.id>5.5</slot.simple.id>
         <slot.full.id>${version.lucene}</slot.full.id>
-        <!-- Needs to match the WildFly core version used by the WildFly server version we target-->
-        <version.org.wildfly.core>3.0.8.Final</version.org.wildfly.core>
-        <!-- Used for integrations tests - try to keep matching the above property -->
+        <!-- Used for integrations tests -->
         <version.wildfly>11.0.0.Final</version.wildfly>
         <!-- Integration test dependencies; typically need to match WildFly version -->
         <version.arquillian>1.1.11.Final</version.arquillian>
@@ -143,12 +141,6 @@
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-misc</artifactId>
                 <version>${version.lucene}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.core</groupId>
-                <artifactId>wildfly-core-feature-pack</artifactId>
-                <version>${version.org.wildfly.core}</version>
-                <type>zip</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
