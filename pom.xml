@@ -93,11 +93,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>lucene-jbossmodules</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.lucene</groupId>
                 <artifactId>lucene-core</artifactId>
                 <version>${version.lucene}</version>
