@@ -73,7 +73,11 @@ You will also need a `server-provisioning.xml` in the root of your project:
 This will make Lucene available as an opt-in dependency to any application deployed on WildFly.
 To enable the dependency there are various options, documented in [Class Loading in WildFly](https://docs.jboss.org/author/display/WFLY/Class+Loading+in+WildFly).
 
-N.B. the current version of these modules has been tested with `WildFly 11.0.0.Final`.
+N.B.:
+
+* The current version of these modules has been tested with `WildFly 11.0.0.Final`.
+* Depending on the WildFly feature pack you chose, some transitive dependencies may not be available in Maven Central.
+  In that case, you should [set up the JBoss Nexus repository](https://developer.jboss.org/wiki/MavenGettingStarted-Users).
 
 ## Non-Maven users
 
