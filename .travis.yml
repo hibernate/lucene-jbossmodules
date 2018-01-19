@@ -14,7 +14,7 @@ install:
   - mvn -N io.takari:maven:wrapper
   - ./mvnw -v
 script:
-  - ./mvnw clean install
+  - ./mvnw -s settings-example.xml clean install
 before_cache:
   # Do not put the artifacts we just built into the cache
   - rm -r $HOME/.m2/repository/org/hibernate/lucene-jbossmodules/

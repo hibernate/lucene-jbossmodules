@@ -87,10 +87,16 @@ See also [WildFly provisioning build tools](https://github.com/wildfly/wildfly-b
 
 The feature packs are also available for downloads as zip files on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome).
 
-## How to Release
+## How to build
 
-    mvn release:prepare
-    mvn release:perform
+Use the provided settings-example.xml file, so that JBoss-specific dependencies can be found:
+
+    mvn -s settings-example.xml clean install
+
+## How to release
+
+    mvn -s settings-example.xml release:prepare
+    mvn -s settings-example.xml release:perform
 
 This will produce two local commits and a local tag, then upload the artifacts to a staging repository on [JBoss Nexus](https://repository.jboss.org/nexus/index.html#welcome).
 
