@@ -20,7 +20,7 @@
         <version.wildfly>11.0.0.Final</version.wildfly>
         <!-- Integration test dependencies; typically need to match WildFly version -->
         <version.arquillian>1.1.11.Final</version.arquillian>
-        <version.arquilliancontainer>2.1.0.Final</version.arquilliancontainer>
+        <version.arquilliancontainer>2.2.0.Final</version.arquilliancontainer>
         <version.shrinkwrap>2.2.2</version.shrinkwrap>
         <version.junit>4.12</version.junit>
         <!-- character encoding -->
