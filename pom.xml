@@ -12,7 +12,7 @@
     <inceptionYear>2014</inceptionYear>
 
     <properties>
-        <version.lucene>5.5.5</version.lucene>
+        <version.lucene>8.3.0</version.lucene>
         <!-- This should match the major.minor of the Lucene version, optionally revisioned with module micro fixes -->
         <slot.simple.id>5.5</slot.simple.id>
         <slot.full.id>${version.lucene}</slot.full.id>
