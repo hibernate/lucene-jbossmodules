@@ -1,3 +1,7 @@
+**This repository is no longer maintained.**
+
+Newer versions of Hibernate projects rely on the JBoss Module bundled with WildFly.
+
 Apache Lucene JBoss Module as WildFly feature pack
 ==================================================
 
